@@ -1,1 +1,1 @@
-SneakCraft is an interactive 3D sneaker configurator built with React, TypeScript, and Three.js. Users can customize sneaker colors, textures, and styles in real time, preview their designs in 360°, and share or download them. This project showcases modern 3D web development and React + TypeScript skills — perfect for a portfolio or resume.
+SneakCraft is an interactive 3D sneaker configurator built with React, TypeScript, and Three.js. Users can customize sneaker colors, textures, and styles in real time, preview their designs in 360°, and share or download them. 
