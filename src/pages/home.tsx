@@ -8,18 +8,18 @@ const Home = () => {
             <section className="flex flex-col lg:flex-row items-center justify-between px-6 lg:px-20 py-16 bg-[#0f0f0f] text-white">
 
                 {/* LEFT */}
-                <div className="max-w-xl">
-                    <div className="uppercase tracking-widest text-sm text-gray-400 mb-4 #565655">
+                <div className="max-w-xl ">
+                    <div className="uppercase tracking-widest text-sm text-gray-400 mb-4 ">
                         Handcrafted to Order
                     </div>
 
-                    <h1 className="text-4xl lg:text-6xl font-bold leading-tight mb-6">
+                    <h1 className="text-4xl lg:text-6xl font-bold leading-tight mb-6 text-[#565655]">
                         Your Sole.<br />
                         Your <em className="text-yellow-500 not-italic">Story.</em><br />
                         Your Craft.
                     </h1>
 
-                    <p className="text-gray-400 mb-8">
+                    <p className="text-gray-400 mb-8 text-[#565655]">
                         Choose from 12 premium materials, 40+ colourways, and infinite
                         combinations. Every pair made by hand, built for you alone.
                     </p>
@@ -82,7 +82,7 @@ const Home = () => {
                     <div className="uppercase tracking-widest text-gray-400 text-sm mb-2">
                         Worn and Loved
                     </div>
-                    <h2 className="text-3xl lg:text-5xl font-bold">
+                    <h2 className="text-3xl lg:text-5xl font-bold text-[#565655]">
                         What Our <em className="text-yellow-500 not-italic">Wearers Say</em>
                     </h2>
                 </div>
