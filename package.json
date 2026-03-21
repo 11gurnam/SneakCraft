@@ -15,7 +15,9 @@
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
     "react-router-dom": "^7.13.1",
-    "sort-by": "^1.2.0"
+    "sass": "^1.98.0",
+    "sort-by": "^1.2.0",
+    "three": "^0.183.2"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.4",
