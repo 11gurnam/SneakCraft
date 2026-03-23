@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useRef } from "react";
 import Layout from "../component/layout/layout";
+import ThreeDRendrer from "../component/three-d-renderer/three-d-rendrer";
 
 const Home = () => {
+    const ref = useRef<HTMLDivElement | null>(null)
     return (
         <Layout>
             {/* HERO */}
-            <section className="flex flex-col lg:flex-row items-center justify-between px-6 lg:px-20 py-16 bg-[#0f0f0f] text-white">
+            <section
+                className="flex flex-col lg:flex-row items-center justify-between px-6 lg:px-20 py-16 bg-[#0f0f0f] text-white">
 
                 {/* LEFT */}
                 <div className="max-w-xl ">
@@ -14,8 +17,8 @@ const Home = () => {
                     </div>
 
                     <h1 className="text-4xl lg:text-6xl font-bold leading-tight mb-6 text-[#565655]">
-                        Your Sole.<br />
-                        Your <em className="text-yellow-500 not-italic">Story.</em><br />
+                        Your Sole.<br/>
+                        Your <em className="text-yellow-500 not-italic">Story.</em><br/>
                         Your Craft.
                     </h1>
 
@@ -29,49 +32,22 @@ const Home = () => {
                             onClick={() =>
                                 document
                                     .getElementById("customizer")
-                                    ?.scrollIntoView({ behavior: "smooth" })
+                                    ?.scrollIntoView({behavior: "smooth"})
                             }
                             className="flex items-center gap-2 bg-yellow-500 text-black px-6 py-3 rounded-full font-medium hover:bg-yellow-400 transition"
                         >
                             Design My Pair
                         </button>
 
-                        <button className="flex items-center gap-2 border border-gray-600 px-6 py-3 rounded-full hover:bg-gray-800 transition">
+                        <button
+                            className="flex items-center gap-2 border border-gray-600 px-6 py-3 rounded-full hover:bg-gray-800 transition">
                             Watch Process
                         </button>
                     </div>
                 </div>
 
-                {/* RIGHT (SVG SHOE) */}
-                <div className="mt-12 lg:mt-0">
-                    <svg
-                        className="w-[420px] max-w-full"
-                        viewBox="0 0 480 380"
-                        fill="none"
-                    >
-                        <ellipse
-                            cx="240"
-                            cy="355"
-                            rx="160"
-                            ry="14"
-                            fill="rgba(0,0,0,0.4)"
-                        />
-
-                        <path
-                            d="M60 310 Q40 310 35 295 L30 270 Q28 255 40 250 L380 238 Q410 237 420 252 L430 270 Q440 290 430 305 Q420 318 380 320 Z"
-                            fill="#2A2A2A"
-                        />
-
-                        <path
-                            d="M55 258 Q42 258 40 248 L50 238 Q55 232 70 232 L370 230 Q395 230 400 240 L408 252 Q410 262 395 265 L65 268 Z"
-                            fill="#3A3530"
-                        />
-
-                        <path
-                            d="M68 238 L75 180 Q78 165 90 155 L130 135 Q148 128 165 130 L230 134 Q255 136 275 148 L310 165 Q330 175 345 190 L365 215 Q378 228 380 240 L68 238Z"
-                            fill="#8B6914"
-                        />
-                    </svg>
+                <div className="bg-transparent p-10 w-[450px] h-[450px]">
+                    <div className="w-full h-full" ref={ref}/>
                 </div>
             </section>
 
@@ -155,7 +131,9 @@ const Home = () => {
 
                 </div>
             </section>
-        </Layout>
+            <ThreeDRendrer
+                parentRef={ref}
+            /></Layout>
     );
 };
 
