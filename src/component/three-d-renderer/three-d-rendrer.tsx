@@ -89,7 +89,6 @@ const ThreeDRendrer: React.FC<IThreeDRenderer> = (props) => {
             requestAnimationFrame(animate);
 
             if (modelRef.current) {
-                console.log(modelRef.current)
                 modelRef.current.rotation.y += 0.01;
             }
             renderer.render(scene, camera);

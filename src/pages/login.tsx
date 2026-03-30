@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import LoginView from "../component/login/login.view";
 import { useNavigate } from 'react-router-dom';
-import { loginUser, signUpUser } from "../api/auth";
+import { login, signUp } from "../api/auth";
 import { AuthContext } from "../context/authContext";
 import Toast from "../component/common/toast/toast";
 
@@ -16,7 +16,7 @@ const Login = () => {
 
     async function handleLogin(email: string, password: string) {
         try {
-            const res = await loginUser(email, password);
+            const res = await login(email, password);
             if (user) {
                 // Toast()
                 navigate('/');
@@ -30,7 +30,7 @@ const Login = () => {
 
     async function handleAccountCreation(values: any) {
         try {
-            const res = await signUpUser(values.email, values.password);
+            const res = await signUp(values.email, values.password);
             console.log('User Signed in ', res)
             navigate('/login');
         } catch (e) {

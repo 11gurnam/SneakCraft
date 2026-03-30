@@ -1,17 +1,17 @@
 import React, { ReactNode } from "react";
-import Navbar from "../navbar/navbar";
 import Footer from "../footer/footer";
+import Header from "../header/header";
 
 type HeaderProps = {
     children: ReactNode;
 };
 
-const Layout = ({ children }: HeaderProps) => {
+const Layout = ({children}: HeaderProps) => {
     return (
         <main>
-            <Navbar />
+            <Header/>
             {children}
-            <Footer />
+            <Footer/>
         </main>
     );
 };
