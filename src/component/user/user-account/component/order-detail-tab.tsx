@@ -58,30 +58,6 @@ const field = {
     outline: "none",
 };
 
-const labelStyle = {
-    fontSize: 11,
-    fontWeight: 600,
-    letterSpacing: "0.1em",
-    textTransform: "uppercase",
-    color: MUTED,
-    display: "block",
-    marginBottom: 6,
-};
-
-const saveBtn = {
-    background: ACCENT,
-    color: DARK,
-    border: "none",
-    borderRadius: 8,
-    padding: "11px 24px",
-    fontFamily: "'Barlow Condensed', sans-serif",
-    fontWeight: 700,
-    fontSize: 13,
-    letterSpacing: "0.1em",
-    textTransform: "uppercase",
-    cursor: "pointer",
-};
-
 
 const OrderDetailTab = () => {
     return (

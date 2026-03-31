@@ -1,11 +1,14 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import UserAccountView from "./userAccount.view";
+import { AuthContext } from "../../../context/authContext";
 
 
 function UserAccount() {
-
+    const {user} = useContext(AuthContext)
     return (
-        <UserAccountView/>
+        <UserAccountView
+            user={user}
+        />
     );
 }
 

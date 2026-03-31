@@ -17,6 +17,7 @@ const labelStyle = {
     color: MUTED,
     display: "block",
     marginBottom: 6,
+    textAlign: 'left',
 };
 
 const saveBtn = {

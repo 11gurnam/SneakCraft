@@ -1,21 +1,57 @@
 import React, { createContext, useEffect, useState } from 'react';
 import { onAuthStateChanged } from "firebase/auth";
-import { auth } from "../firebase";
+import { auth, db } from "../firebase";
+import { doc, getDoc } from "firebase/firestore";
 
-const initialAuth = {
+export interface AuthUser {
+    uid: string;
+    email: string | null;
+    displayName?: string | null;
+    username?: string;
+    firstName?: string;
+    lastName?: string;
+};
+
+type AuthContextType = {
+    user: AuthUser | null;
+    loading: boolean;
+};
+
+export const AuthContext = createContext<AuthContextType>({
     user: null,
     loading: true,
-}
+});
 
-export const AuthContext = createContext(initialAuth);
-
-export const AuthProvider = ({children}) => {
-    const [user, setUser] = useState(null);
+export const AuthProvider = ({children}: { children: React.ReactNode }) => {
+    const [user, setUser] = useState<AuthUser | null>(null);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, (firebaseUser: any) => {
-            setUser(firebaseUser);
+        const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
+            if (firebaseUser) {
+                try {
+
+                    const docRef = doc(db, "users", firebaseUser.uid);
+                    const docSnap = await getDoc(docRef);
+
+                    const extraData = docSnap.exists() ? docSnap.data() : {};
+
+
+                    setUser({
+                        uid: firebaseUser.uid,
+                        email: firebaseUser.email,
+                        displayName: firebaseUser.displayName,
+                        ...extraData,
+                    });
+
+                } catch (error) {
+                    console.error("Error fetching user data:", error);
+                    setUser(null);
+                }
+            } else {
+                setUser(null);
+            }
+
             setLoading(false);
         });
 
@@ -28,4 +64,3 @@ export const AuthProvider = ({children}) => {
         </AuthContext.Provider>
     );
 };
-

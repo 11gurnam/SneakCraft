@@ -7,6 +7,7 @@ import SupportTab from "./component/support-tab";
 import DangerTab from "./component/delete-account";
 import { CircleUser, Info, KeyRound, LogIn, LogOut, MapPinHouse, ScrollText, Trash2 } from "lucide-react";
 import LogoutButton from "./component/logout-button";
+import { IUserAccountView } from "./types/user-account.types";
 
 const ACCENT = "#C8FF00";
 const DARK = "#0A0A0A";
@@ -36,7 +37,7 @@ const TAB_CONTENT = {
     logout: LogoutButton
 };
 
-function UserAccountView() {
+const  UserAccountView:React.FC<IUserAccountView>=(props) =>{
     const [active, setActive] = useState("profile");
     const Content = TAB_CONTENT[active];
 

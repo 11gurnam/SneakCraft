@@ -25,7 +25,8 @@ const Header = () => {
     return (
         <div className={'header flex justify-between items-center gap-[10px]  mx-[10px]'}>
             <Navbar/>
-            {!user ? (<button
+            {!user ? (
+                <button
                 className="
                        w-max
                        h-fit
@@ -42,7 +43,6 @@ const Header = () => {
                        hover:border-[#0f0f0f]
                        hover:bg-[rgba(255,255,255,0.05)]
                       "
-
                 onClick={navigateToLogin}
             >
                 <LogIn

@@ -6,7 +6,9 @@ import { ILoginView } from "./types/login.types";
 type TabType = "login" | "signup";
 
 type FormData = {
-    name?: string;
+    lastName?: string;
+    firstName?: string
+    username?: string;
     email: string;
     password: string;
     confirm?: string;
@@ -38,14 +40,21 @@ const LoginView: React.FC<ILoginView> = (props) => {
     const isSignup = tab === "signup";
     const password = watch("password");
 
-    const onSubmit = (data: FormData) => {
-        setLoading(true);
-        if (!isSignup) {
-            props.handleLogin(data.email, data.password)
-        } else {
-            props.handleAccountCreation(data);
+    const onSubmit = async (data: FormData) => {
+        try {
+            setLoading(true);
+
+            if (!isSignup) {
+                await props.handleLogin(data.email, data.password);
+            } else {
+                await props.handleAccountCreation(data);
+            }
+
+        } catch (err) {
+            console.error(err);
+        } finally {
+            setLoading(false);
         }
-        setLoading(false);
     };
 
     const strength =
@@ -101,14 +110,40 @@ const LoginView: React.FC<ILoginView> = (props) => {
                     <form onSubmit={handleSubmit(onSubmit)} className="mt-6 space-y-4">
 
                         {isSignup && (
+                            <div className="flex items-center justify-between gap-[10px] space-y-3">
+                                <div>
+                                    <input
+                                        placeholder="First name"
+                                        {...register("firstName", {required: "Enter your first name"})}
+                                        className="w-full p-3 rounded-lg bg-neutral-800 border border-neutral-700 text-white"
+                                    />
+                                    {errors.firstName && (
+                                        <p className="text-red-400 text-sm mt-1">{errors.firstName.message}</p>
+                                    )}
+                                </div>
+
+                                <div className={'!mt-0'}>
+                                    <input
+                                        placeholder="Last name"
+                                        {...register("lastName", {required: "Enter your last name"})}
+                                        className="w-full p-3 rounded-lg bg-neutral-800 border border-neutral-700 text-white"
+                                    />
+                                    {errors.lastName && (
+                                        <p className="text-red-400 text-sm mt-1">{errors.lastName.message}</p>
+                                    )}
+                                </div>
+                            </div>
+                        )}
+
+                        {isSignup && (
                             <div>
                                 <input
-                                    placeholder="Full name"
-                                    {...register("name", {required: "Enter your name"})}
+                                    placeholder="Username"
+                                    {...register("username", {required: "Enter username"})}
                                     className="w-full p-3 rounded-lg bg-neutral-800 border border-neutral-700 text-white"
                                 />
-                                {errors.name && (
-                                    <p className="text-base text-red-400 text-sm mt-1">{errors.name.message}</p>
+                                {errors.username && (
+                                    <p className="text-red-400 text-sm mt-1">{errors.username.message}</p>
                                 )}
                             </div>
                         )}

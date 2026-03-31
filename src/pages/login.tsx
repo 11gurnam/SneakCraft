@@ -3,10 +3,10 @@ import LoginView from "../component/login/login.view";
 import { useNavigate } from 'react-router-dom';
 import { login, signUp } from "../api/auth";
 import { AuthContext } from "../context/authContext";
-import Toast from "../component/common/toast/toast";
+import { SignUpData } from "../component/login/types/login.types";
 
 const Login = () => {
-    const { user, loading } = useContext(AuthContext);
+    const {user, loading} = useContext(AuthContext);
 
     const navigate = useNavigate();
 
@@ -28,9 +28,9 @@ const Login = () => {
 
     }
 
-    async function handleAccountCreation(values: any) {
+    async function handleAccountCreation(values: SignUpData) {
         try {
-            const res = await signUp(values.email, values.password);
+            const res = await signUp(values);
             console.log('User Signed in ', res)
             navigate('/login');
         } catch (e) {

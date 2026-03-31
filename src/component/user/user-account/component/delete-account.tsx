@@ -1,9 +1,10 @@
 import React, { useState } from "react";
+import { deleteAccount } from "../../../../api/auth";
+import { ChevronRight } from "lucide-react";
 
 
 const ACCENT = "#C8FF00";
 const DARK = "#0A0A0A";
-const SURFACE = "#111111";
 const SURFACE2 = "#1A1A1A";
 const BORDER = "#2A2A2A";
 const MUTED = "#666666";
@@ -49,7 +50,14 @@ const field = {
 
 function DangerTab() {
     const [typed, setTyped] = useState("");
-    const confirmed = typed === "DELETE";
+    const confirmed = typed.length>4;
+
+    async function handleAccountDelete() {
+        console.log('account deleted')
+        await deleteAccount(typed);
+    }
+
+
     return (
         <div>
             <div style={{
@@ -109,20 +117,26 @@ function DangerTab() {
                 ))}
             </div>
             <div style={{marginBottom: 16}}>
-                <label style={labelStyle}>Type DELETE to confirm</label>
-                <input placeholder='Type "DELETE"' style={{
+                <label style={labelStyle}>Type Password to confirm</label>
+                <input
+                    placeholder='Type password'
+                       style={{
                     ...field,
                     borderColor: typed.length > 0 ? (confirmed ? "#1D9E75" : "#E24B4A66") : BORDER
-                }} onChange={e => setTyped(e.target.value)}/>
+                }}
+                    onChange={e => setTyped(e.target.value)}
+                />
             </div>
-            <button style={{
-                ...saveBtn,
-                background: confirmed ? "#E24B4A" : SURFACE2,
-                color: confirmed ? WHITE : MUTED,
-                border: `1px solid ${confirmed ? "#E24B4A" : BORDER}`,
-                cursor: confirmed ? "pointer" : "not-allowed",
-                transition: "all .2s",
-            }} disabled={!confirmed}>
+            <button
+                onClick={handleAccountDelete}
+                style={{
+                    ...saveBtn,
+                    background: confirmed ? "#E24B4A" : SURFACE2,
+                    color: confirmed ? WHITE : MUTED,
+                    border: `1px solid ${confirmed ? "#E24B4A" : BORDER}`,
+                    cursor: confirmed ? "pointer" : "not-allowed",
+                    transition: "all .2s",
+                }} disabled={!confirmed}>
                 {confirmed ? "Permanently delete account" : "Delete account"}
             </button>
         </div>
