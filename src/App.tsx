@@ -5,6 +5,7 @@ import Login from "./pages/login";
 import './App.scss'
 import ProtectedRoute from "./component/common/protectedRoute";
 import UserAccount from "./component/user/user-account/userAccount.view";
+import SneakerCraftPLP from "./component/product-listing/product-listing.view";
 
 function App() {
 
@@ -15,6 +16,7 @@ function App() {
             <Route path={'/my-account'} element={<ProtectedRoute>
                 <UserAccount/>
             </ProtectedRoute>}/>
+            <Route path={'/products'} element={<ProtectedRoute><SneakerCraftPLP/></ProtectedRoute>}/>
         </Routes>
     )
 }
